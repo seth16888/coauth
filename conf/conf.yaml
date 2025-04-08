@@ -1,0 +1,17 @@
+server:
+  grpc:
+    addr: 0.0.0.0:10101
+    timeout: 30
+log:
+  level: debug
+  filename: app.log
+db:
+  driver: mysql
+  source: root:123456@tcp(127.0.0.1:13306)/coauth?charset=utf8mb4&parseTime=True&loc=Local
+  log_level: info
+  singular_table: true
+  prepare_stmt: true
+  allow_global_update: false
+  max_open_conns: 100
+  max_idle_conns: 100
+  conn_max_lifetime: 3600
