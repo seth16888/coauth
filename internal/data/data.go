@@ -34,7 +34,7 @@ func (r *AuthorizeData) FindClientByID(ctx context.Context, clientID string) (*e
 func (r *AuthorizeData) FindAuthCode(ctx context.Context, code string) (*entities.AuthCode, error) {
 	var authCode entities.AuthCode
 	if err := r.DB.WithContext(ctx).Where("code = ?", code).First(&authCode).Error; err != nil {
-		r.log.Error("failed to find client", zap.Error(err))
+		r.log.Error("failed to find auth code", zap.Error(err))
 		return nil, fmtDBError(err)
 	}
 	return &authCode, nil
@@ -44,6 +44,7 @@ func (r *AuthorizeData) FindAuthCode(ctx context.Context, code string) (*entitie
 func (r *AuthorizeData) SaveAuthCode(ctx context.Context, authCode *entities.AuthCode) error {
 	err := r.DB.WithContext(ctx).Create(authCode).Error
 	if err != nil {
+		r.log.Error("failed to save auth code", zap.Error(err))
 		return fmtDBError(err)
 	}
 	return nil
@@ -53,6 +54,7 @@ func (r *AuthorizeData) SaveAuthCode(ctx context.Context, authCode *entities.Aut
 func (r *AuthorizeData) SaveToken(ctx context.Context, token *entities.Token) error {
 	err := r.DB.WithContext(ctx).Create(token).Error
 	if err != nil {
+		r.log.Error("failed to save token", zap.Error(err))
 		return fmtDBError(err)
 	}
 	return nil
@@ -62,7 +64,7 @@ func (r *AuthorizeData) SaveToken(ctx context.Context, token *entities.Token) er
 func (r *AuthorizeData) FindToken(ctx context.Context, accessToken string) (*entities.Token, error) {
 	var token entities.Token
 	if err := r.DB.WithContext(ctx).Where("access_token = ?", accessToken).First(&token).Error; err != nil {
-		r.log.Error("failed to find client", zap.Error(err))
+		r.log.Error("failed to find token", zap.Error(err))
 		return nil, fmtDBError(err)
 	}
 	return &token, nil
@@ -71,6 +73,7 @@ func (r *AuthorizeData) FindToken(ctx context.Context, accessToken string) (*ent
 func (r *AuthorizeData) SaveClient(ctx context.Context, client *entities.App) error {
 	err := r.DB.WithContext(ctx).Create(client).Error
 	if err != nil {
+		r.log.Error("failed to save client", zap.Error(err))
 		return fmtDBError(err)
 	}
 	return nil
@@ -78,7 +81,7 @@ func (r *AuthorizeData) SaveClient(ctx context.Context, client *entities.App) er
 
 func fmtDBError(err error) error {
 	if !errors.Is(err, gorm.ErrRecordNotFound) {
-		return fmt.Errorf("failed to find client: %s", err.Error())
+		return fmt.Errorf("database occur error: %s", err.Error())
 	}
 	return fmt.Errorf("data not found")
 }
