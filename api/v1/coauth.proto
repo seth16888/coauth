@@ -63,7 +63,7 @@ message TokenRequest {
   string code = 4;
   string redirect_uri = 5;
   string data_type = 6;
-  string callback = 7;
+
   string refresh_token = 8;
 }
 

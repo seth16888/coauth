@@ -84,12 +84,6 @@ func (uc *AuthorizeUseCase) Token(ctx context.Context, req *model.TokenRequest) 
 		return nil, status.Errorf(codes.InvalidArgument, "invalid grant type")
 	}
 
-	if req.DataType == "jsonp" {
-		if req.Callback == "" {
-			return nil, status.Errorf(codes.InvalidArgument, "callback is required")
-		}
-	}
-
 	// 检查客户端是否存在
 	client, err := uc.repo.FindClientByID(ctx, req.ClientID)
 	if err != nil {

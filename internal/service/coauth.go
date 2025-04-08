@@ -52,7 +52,6 @@ func (s *CoauthService) Token(ctx context.Context, req *pb.TokenRequest) (*pb.To
 		Code:         req.Code,
 		RedirectURI:  req.RedirectUri,
 		DataType:     req.DataType,
-		Callback:     req.Callback,
 		RefreshToken: req.RefreshToken,
 	}
 

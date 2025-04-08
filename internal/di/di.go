@@ -32,7 +32,7 @@ func NewContainer(configFile string) *Container {
 	if err != nil {
 		log.Fatal("failed to connect database", zap.Error(err))
 	}
-	dbRepo := data.NewAuthorizeData(db)
+	dbRepo := data.NewAuthorizeData(db, log)
 	authUsecase := biz.NewAuthorizeUseCase(dbRepo, log)
 	svc := service.NewCoauthService(authUsecase, log)
 

@@ -302,7 +302,6 @@ type TokenRequest struct {
 	Code          string                 `protobuf:"bytes,4,opt,name=code,proto3" json:"code,omitempty"`
 	RedirectUri   string                 `protobuf:"bytes,5,opt,name=redirect_uri,json=redirectUri,proto3" json:"redirect_uri,omitempty"`
 	DataType      string                 `protobuf:"bytes,6,opt,name=data_type,json=dataType,proto3" json:"data_type,omitempty"`
-	Callback      string                 `protobuf:"bytes,7,opt,name=callback,proto3" json:"callback,omitempty"`
 	RefreshToken  string                 `protobuf:"bytes,8,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -376,13 +375,6 @@ func (x *TokenRequest) GetRedirectUri() string {
 func (x *TokenRequest) GetDataType() string {
 	if x != nil {
 		return x.DataType
-	}
-	return ""
-}
-
-func (x *TokenRequest) GetCallback() string {
-	if x != nil {
-		return x.Callback
 	}
 	return ""
 }
@@ -487,7 +479,7 @@ const file_v1_coauth_proto_rawDesc = "" +
 	"\x0eAuthorizeReply\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x14\n" +
 	"\x05state\x18\x02 \x01(\tR\x05state\x12!\n" +
-	"\fredirect_uri\x18\x03 \x01(\tR\vredirectUri\"\x84\x02\n" +
+	"\fredirect_uri\x18\x03 \x01(\tR\vredirectUri\"\xe8\x01\n" +
 	"\fTokenRequest\x12\x1b\n" +
 	"\tclient_id\x18\x01 \x01(\tR\bclientId\x12#\n" +
 	"\rclient_secret\x18\x02 \x01(\tR\fclientSecret\x12\x1d\n" +
@@ -495,8 +487,7 @@ const file_v1_coauth_proto_rawDesc = "" +
 	"grant_type\x18\x03 \x01(\tR\tgrantType\x12\x12\n" +
 	"\x04code\x18\x04 \x01(\tR\x04code\x12!\n" +
 	"\fredirect_uri\x18\x05 \x01(\tR\vredirectUri\x12\x1b\n" +
-	"\tdata_type\x18\x06 \x01(\tR\bdataType\x12\x1a\n" +
-	"\bcallback\x18\a \x01(\tR\bcallback\x12#\n" +
+	"\tdata_type\x18\x06 \x01(\tR\bdataType\x12#\n" +
 	"\rrefresh_token\x18\b \x01(\tR\frefreshToken\"\x92\x01\n" +
 	"\n" +
 	"TokenReply\x12!\n" +
@@ -505,11 +496,11 @@ const file_v1_coauth_proto_rawDesc = "" +
 	"token_type\x18\x02 \x01(\tR\ttokenType\x12\x1d\n" +
 	"\n" +
 	"expires_in\x18\x03 \x01(\x03R\texpiresIn\x12#\n" +
-	"\rrefresh_token\x18\x04 \x01(\tR\frefreshToken2\x9c\x02\n" +
-	"\x06coauth\x12b\n" +
-	"\tAuthorize\x12\x1f.api.coauth.v1.AuthorizeRequest\x1a\x1d.api.coauth.v1.AuthorizeReply\"\x15\x82\xd3\xe4\x93\x02\x0f\x12\r/v1/authorize\x12U\n" +
-	"\x05Token\x12\x1b.api.coauth.v1.TokenRequest\x1a\x19.api.coauth.v1.TokenReply\"\x14\x82\xd3\xe4\x93\x02\x0e:\x01*\"\t/v1/token\x12W\n" +
-	"\x06AddApp\x12\x1c.api.coauth.v1.AddAppRequest\x1a\x1a.api.coauth.v1.AddAppReply\"\x13\x82\xd3\xe4\x93\x02\r:\x01*\"\b/v1/appsB#\n" +
+	"\rrefresh_token\x18\x04 \x01(\tR\frefreshToken2\xab\x02\n" +
+	"\x06coauth\x12g\n" +
+	"\tAuthorize\x12\x1f.api.coauth.v1.AuthorizeRequest\x1a\x1d.api.coauth.v1.AuthorizeReply\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v1/auth/authorize\x12Z\n" +
+	"\x05Token\x12\x1b.api.coauth.v1.TokenRequest\x1a\x19.api.coauth.v1.TokenReply\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/auth/token\x12\\\n" +
+	"\x06AddApp\x12\x1c.api.coauth.v1.AddAppRequest\x1a\x1a.api.coauth.v1.AddAppReply\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/auth/appsB#\n" +
 	"\rapi.coauth.v1P\x01Z\x10coauth/api/v1;v1b\x06proto3"
 
 var (

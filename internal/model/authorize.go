@@ -14,14 +14,13 @@ type AuthorizeReply struct {
 }
 
 type TokenRequest struct {
-	ClientID     string `json:"client_id"`
-	ClientSecret string `json:"client_secret"`
-	GrantType    string `json:"grant_type"`
-	Code         string `json:"code"`
-	RedirectURI  string `json:"redirect_uri"`
-	DataType     string `json:"data_type"`
-	Callback     string `json:"callback"`
-	RefreshToken string `json:"refresh_token"`
+	ClientID     string `json:"client_id"`     // 	OAuth2客户ID
+	ClientSecret string `json:"client_secret"` // OAuth2密钥
+	GrantType    string `json:"grant_type"`    // 授权方式：authorization_code或者refresh_token
+	Code         string `json:"code"`          // 调用 /action/oauth2/authorize 接口返回的授权码(grant_type为authorization_code时必选)
+	RedirectURI  string `json:"redirect_uri"`  // 回调地址
+	DataType     string `json:"data_type"`     // 返回数据类型['json'|'jsonp'|'xml']
+	RefreshToken string `json:"refresh_token"` // 上次调用 /action/oauth2/token 接口返回的refresh_token(grant_type为refresh_token时必选)
 }
 
 type TokenReply struct {
