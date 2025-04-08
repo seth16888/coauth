@@ -1,7 +1,7 @@
 package biz
 
 import (
-	"coauth/internal/data"
+	"coauth/internal/entities"
 	"coauth/internal/model"
 	"context"
 	"fmt"
@@ -14,12 +14,21 @@ import (
 	"google.golang.org/grpc/status"
 )
 
+type AuthorizeRepo interface {
+	FindClientByID(ctx context.Context, clientID string) (*entities.App, error)
+	FindAuthCode(ctx context.Context, code string) (*entities.AuthCode, error)
+	SaveAuthCode(ctx context.Context, authCode *entities.AuthCode) error
+	SaveToken(ctx context.Context, token *entities.Token) error
+	FindToken(ctx context.Context, accessToken string) (*entities.Token, error)
+	SaveClient(ctx context.Context, client *entities.App) error
+}
+
 type AuthorizeUseCase struct {
-	repo *data.GORMRepository
+	repo AuthorizeRepo
 	log  *zap.Logger
 }
 
-func NewAuthorizeUseCase(repo *data.GORMRepository, log *zap.Logger) *AuthorizeUseCase {
+func NewAuthorizeUseCase(repo AuthorizeRepo, log *zap.Logger) *AuthorizeUseCase {
 	return &AuthorizeUseCase{repo: repo, log: log}
 }
 
@@ -40,7 +49,7 @@ func (uc *AuthorizeUseCase) Authorize(ctx context.Context, req *model.AuthorizeR
 	}
 
 	// save auth code
-	authCode := &data.AuthCode{
+	authCode := &entities.AuthCode{
 		Code:        code,
 		ClientID:    req.ClientID,
 		UserID:      userID,
@@ -108,7 +117,7 @@ func (uc *AuthorizeUseCase) Token(ctx context.Context, req *model.TokenRequest) 
 	scopes := []string{}
 
 	// 保存token
-	token := &data.Token{
+	token := &entities.Token{
 		AccessToken:  accessToken,
 		RefreshToken: refreshToken,
 		ClientID:     authCode.ClientID,
@@ -137,7 +146,7 @@ func (uc *AuthorizeUseCase) AddClient(ctx context.Context, req *model.AddClientR
 	clientSecret := uuid.New().String()
 
 	// 创建客户端对象
-	client := &data.App{
+	client := &entities.App{
 		ID:          clientID,
 		Secret:      clientSecret,
 		Name:        req.ClientName,

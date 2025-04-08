@@ -11,18 +11,18 @@ option java_package = "api.coauth.v1";
 service coauth {
 	rpc Authorize (AuthorizeRequest) returns (AuthorizeReply){
     option (google.api.http) = {
-      get: "/v1/authorize"
+      get: "/v1/auth/authorize"
     };
   }
 	rpc Token (TokenRequest) returns (TokenReply){
     option (google.api.http) = {
-      post: "/v1/token"
+      post: "/v1/auth/token"
       body: "*"
     };
   }
   rpc AddApp (AddAppRequest) returns (AddAppReply){
     option (google.api.http) = {
-      post: "/v1/apps"
+      post: "/v1/auth/apps"
       body: "*"
     };
   }

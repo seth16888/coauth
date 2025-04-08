@@ -17,9 +17,9 @@ var (
 )
 
 type Container struct {
-	Config      *config.Conf // 配置文件
-	DB          *gorm.DB     // 数据库连接
-	DbRepo      *data.GORMRepository
+	Config      *config.Conf      // 配置文件
+	DB          *gorm.DB          // 数据库连接
+	DbRepo      biz.AuthorizeRepo // 数据库仓库，用于操作数据库
 	Log         *zap.Logger
 	AuthUsecase *biz.AuthorizeUseCase
 	Svc         *service.CoauthService
@@ -32,7 +32,7 @@ func NewContainer(configFile string) *Container {
 	if err != nil {
 		log.Fatal("failed to connect database", zap.Error(err))
 	}
-	dbRepo := data.NewGORMRepository(db)
+	dbRepo := data.NewAuthorizeData(db)
 	authUsecase := biz.NewAuthorizeUseCase(dbRepo, log)
 	svc := service.NewCoauthService(authUsecase, log)
 
