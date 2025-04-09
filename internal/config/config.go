@@ -3,6 +3,7 @@ package config
 import (
 	"coauth/internal/database"
 	"coauth/pkg/logger"
+	"fmt"
 
 	"sync"
 
@@ -43,6 +44,7 @@ func ReadConfigFromFile(file string) *Conf {
 	if file == "" {
 		file = "conf.yaml"
 	}
+	fmt.Println("read config from file: ", file)
 
 	viper.SetConfigFile(file)
 	viper.AddConfigPath(".")
