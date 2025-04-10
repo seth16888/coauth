@@ -31,13 +31,27 @@ service coauth {
       get: "/v1/auth/captcha"
     };
   }
-
+  rpc VerifyCaptcha (VerifyCaptchaRequest) returns (VerifyCaptchaReply){
+    option (google.api.http) = {
+      get: "/v1/auth/captcha/verify"
+    };
+  }
   rpc Login (LoginRequest) returns (LoginReply){
     option (google.api.http) = {
       post: "/v1/auth/login"
       body: "*"
     };
   }
+}
+
+message VerifyCaptchaRequest {
+  string captchaKey = 1;
+  string captchaCode = 2;
+  bool clear = 3;
+}
+
+message VerifyCaptchaReply {
+  bool success = 1;
 }
 
 message LoginRequest {

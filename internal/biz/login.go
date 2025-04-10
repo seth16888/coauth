@@ -3,6 +3,7 @@ package biz
 import (
 	"coauth/internal/entities"
 	"coauth/internal/model"
+	"coauth/pkg/encrypt"
 	"coauth/pkg/helpers"
 	"coauth/pkg/jwt"
 	"context"
@@ -42,9 +43,7 @@ func (uc *LoginUsecase) PasswordLogin(ctx context.Context,
 		return nil, fmt.Errorf("user is disabled")
 	}
 
-	// TODO: 密码校验, 暂时不校验
-	// if encrypt.EncryptPassword(req.Password, user.PasswordSalt) != user.Password {
-	if req.Password == "123123" {
+	if encrypt.EncryptPassword(req.Password, user.Salt) != user.Password {
 		return nil, fmt.Errorf("username or password error")
 	}
 

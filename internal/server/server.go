@@ -3,6 +3,7 @@ package server
 import (
 	pb "coauth/api/v1"
 	"coauth/internal/di"
+	"coauth/internal/middleware"
 	"net"
 
 	"go.uber.org/zap"
@@ -21,7 +22,12 @@ func Start(deps *di.Container) error {
 		return err
 	}
 
-	s := grpc.NewServer()
+	s := grpc.NewServer(
+		grpc.ChainUnaryInterceptor(
+			middleware.RequestID(),
+			middleware.LoggingInterceptor(deps.Log),
+		),
+	)
 	pb.RegisterCoauthServer(s, deps.Svc)
 
 	deps.Log.Info("starting grpc server", zap.String("addr", listenAddr))

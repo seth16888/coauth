@@ -15,3 +15,10 @@ type PasswordLoginRes struct {
 	TokenType    string `json:"tokenType"`
 	ExpiresIn    int64  `json:"expiresIn"`
 }
+
+// VerifyCaptchaReq 验证验证码请求参数
+type VerifyCaptchaReq struct {
+	CaptchaKey  string `json:"captchaKey" validate:"required,min=12,max=64"`
+	CaptchaCode string `json:"captchaCode" validate:"required,min=4,max=8"`
+	Clear       bool   `json:"clear"` // 是否清除验证码
+}
