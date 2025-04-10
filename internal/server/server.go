@@ -30,6 +30,7 @@ func Start(deps *di.Container) error {
       middleware.TimeoutInterceptor(),
 			middleware.RequestID(),
 			middleware.LoggingInterceptor(deps.Log),
+      middleware.ClientDisconnectInterceptor(),
 			middleware.RecoverInterceptor(deps.Log),
 		),
 	)
