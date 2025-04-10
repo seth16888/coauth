@@ -29,6 +29,7 @@ func Start(deps *di.Container) error {
 		grpc.ChainUnaryInterceptor(
 			middleware.RequestID(),
 			middleware.LoggingInterceptor(deps.Log),
+			middleware.RecoverInterceptor(deps.Log),
 		),
 	)
 	pb.RegisterCoauthServer(s, deps.Svc)
