@@ -19,6 +19,7 @@ type Conf struct {
 	Server Server
 	DB     *database.DatabaseConfig
 	Log    *logger.LogConfig
+	Jwt    *Jwt
 }
 
 func GetConf() *Conf {
@@ -29,6 +30,13 @@ func GetConf() *Conf {
 		return confVar
 	}
 	return ReadConfigFromFile("")
+}
+
+type Jwt struct {
+	Issuer         string
+	ExpireTime     int
+	MaxRefreshTime int
+	SignKey        string
 }
 
 type Server struct {

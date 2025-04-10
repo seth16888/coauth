@@ -22,6 +22,230 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type LoginRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Username      string                 `protobuf:"bytes,1,opt,name=username,proto3" json:"username,omitempty"`
+	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
+	CaptchaKey    string                 `protobuf:"bytes,3,opt,name=captchaKey,proto3" json:"captchaKey,omitempty"`
+	CaptchaCode   string                 `protobuf:"bytes,4,opt,name=captchaCode,proto3" json:"captchaCode,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoginRequest) Reset() {
+	*x = LoginRequest{}
+	mi := &file_v1_coauth_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoginRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginRequest) ProtoMessage() {}
+
+func (x *LoginRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_v1_coauth_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginRequest.ProtoReflect.Descriptor instead.
+func (*LoginRequest) Descriptor() ([]byte, []int) {
+	return file_v1_coauth_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *LoginRequest) GetUsername() string {
+	if x != nil {
+		return x.Username
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetCaptchaKey() string {
+	if x != nil {
+		return x.CaptchaKey
+	}
+	return ""
+}
+
+func (x *LoginRequest) GetCaptchaCode() string {
+	if x != nil {
+		return x.CaptchaCode
+	}
+	return ""
+}
+
+type LoginReply struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AccessToken   string                 `protobuf:"bytes,1,opt,name=accessToken,proto3" json:"accessToken,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,2,opt,name=refreshToken,proto3" json:"refreshToken,omitempty"`
+	TokenType     string                 `protobuf:"bytes,3,opt,name=tokenType,proto3" json:"tokenType,omitempty"`
+	ExpiresIn     int64                  `protobuf:"varint,4,opt,name=expiresIn,proto3" json:"expiresIn,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *LoginReply) Reset() {
+	*x = LoginReply{}
+	mi := &file_v1_coauth_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *LoginReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LoginReply) ProtoMessage() {}
+
+func (x *LoginReply) ProtoReflect() protoreflect.Message {
+	mi := &file_v1_coauth_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LoginReply.ProtoReflect.Descriptor instead.
+func (*LoginReply) Descriptor() ([]byte, []int) {
+	return file_v1_coauth_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *LoginReply) GetAccessToken() string {
+	if x != nil {
+		return x.AccessToken
+	}
+	return ""
+}
+
+func (x *LoginReply) GetRefreshToken() string {
+	if x != nil {
+		return x.RefreshToken
+	}
+	return ""
+}
+
+func (x *LoginReply) GetTokenType() string {
+	if x != nil {
+		return x.TokenType
+	}
+	return ""
+}
+
+func (x *LoginReply) GetExpiresIn() int64 {
+	if x != nil {
+		return x.ExpiresIn
+	}
+	return 0
+}
+
+type CaptchaRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CaptchaRequest) Reset() {
+	*x = CaptchaRequest{}
+	mi := &file_v1_coauth_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CaptchaRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CaptchaRequest) ProtoMessage() {}
+
+func (x *CaptchaRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_v1_coauth_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CaptchaRequest.ProtoReflect.Descriptor instead.
+func (*CaptchaRequest) Descriptor() ([]byte, []int) {
+	return file_v1_coauth_proto_rawDescGZIP(), []int{2}
+}
+
+type CaptchaReply struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	CaptchaKey    string                 `protobuf:"bytes,1,opt,name=captchaKey,proto3" json:"captchaKey,omitempty"`
+	CaptchaValue  string                 `protobuf:"bytes,2,opt,name=captchaValue,proto3" json:"captchaValue,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CaptchaReply) Reset() {
+	*x = CaptchaReply{}
+	mi := &file_v1_coauth_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CaptchaReply) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CaptchaReply) ProtoMessage() {}
+
+func (x *CaptchaReply) ProtoReflect() protoreflect.Message {
+	mi := &file_v1_coauth_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CaptchaReply.ProtoReflect.Descriptor instead.
+func (*CaptchaReply) Descriptor() ([]byte, []int) {
+	return file_v1_coauth_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *CaptchaReply) GetCaptchaKey() string {
+	if x != nil {
+		return x.CaptchaKey
+	}
+	return ""
+}
+
+func (x *CaptchaReply) GetCaptchaValue() string {
+	if x != nil {
+		return x.CaptchaValue
+	}
+	return ""
+}
+
 type AddAppRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ClientName    string                 `protobuf:"bytes,1,opt,name=client_name,json=clientName,proto3" json:"client_name,omitempty"`
@@ -36,7 +260,7 @@ type AddAppRequest struct {
 
 func (x *AddAppRequest) Reset() {
 	*x = AddAppRequest{}
-	mi := &file_v1_coauth_proto_msgTypes[0]
+	mi := &file_v1_coauth_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -48,7 +272,7 @@ func (x *AddAppRequest) String() string {
 func (*AddAppRequest) ProtoMessage() {}
 
 func (x *AddAppRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_coauth_proto_msgTypes[0]
+	mi := &file_v1_coauth_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -61,7 +285,7 @@ func (x *AddAppRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddAppRequest.ProtoReflect.Descriptor instead.
 func (*AddAppRequest) Descriptor() ([]byte, []int) {
-	return file_v1_coauth_proto_rawDescGZIP(), []int{0}
+	return file_v1_coauth_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *AddAppRequest) GetClientName() string {
@@ -117,7 +341,7 @@ type AddAppReply struct {
 
 func (x *AddAppReply) Reset() {
 	*x = AddAppReply{}
-	mi := &file_v1_coauth_proto_msgTypes[1]
+	mi := &file_v1_coauth_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -129,7 +353,7 @@ func (x *AddAppReply) String() string {
 func (*AddAppReply) ProtoMessage() {}
 
 func (x *AddAppReply) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_coauth_proto_msgTypes[1]
+	mi := &file_v1_coauth_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -142,7 +366,7 @@ func (x *AddAppReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddAppReply.ProtoReflect.Descriptor instead.
 func (*AddAppReply) Descriptor() ([]byte, []int) {
-	return file_v1_coauth_proto_rawDescGZIP(), []int{1}
+	return file_v1_coauth_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *AddAppReply) GetCode() int64 {
@@ -178,7 +402,7 @@ type AuthorizeRequest struct {
 
 func (x *AuthorizeRequest) Reset() {
 	*x = AuthorizeRequest{}
-	mi := &file_v1_coauth_proto_msgTypes[2]
+	mi := &file_v1_coauth_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -190,7 +414,7 @@ func (x *AuthorizeRequest) String() string {
 func (*AuthorizeRequest) ProtoMessage() {}
 
 func (x *AuthorizeRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_coauth_proto_msgTypes[2]
+	mi := &file_v1_coauth_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -203,7 +427,7 @@ func (x *AuthorizeRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthorizeRequest.ProtoReflect.Descriptor instead.
 func (*AuthorizeRequest) Descriptor() ([]byte, []int) {
-	return file_v1_coauth_proto_rawDescGZIP(), []int{2}
+	return file_v1_coauth_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *AuthorizeRequest) GetClientId() string {
@@ -245,7 +469,7 @@ type AuthorizeReply struct {
 
 func (x *AuthorizeReply) Reset() {
 	*x = AuthorizeReply{}
-	mi := &file_v1_coauth_proto_msgTypes[3]
+	mi := &file_v1_coauth_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -257,7 +481,7 @@ func (x *AuthorizeReply) String() string {
 func (*AuthorizeReply) ProtoMessage() {}
 
 func (x *AuthorizeReply) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_coauth_proto_msgTypes[3]
+	mi := &file_v1_coauth_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -270,7 +494,7 @@ func (x *AuthorizeReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AuthorizeReply.ProtoReflect.Descriptor instead.
 func (*AuthorizeReply) Descriptor() ([]byte, []int) {
-	return file_v1_coauth_proto_rawDescGZIP(), []int{3}
+	return file_v1_coauth_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *AuthorizeReply) GetCode() string {
@@ -309,7 +533,7 @@ type TokenRequest struct {
 
 func (x *TokenRequest) Reset() {
 	*x = TokenRequest{}
-	mi := &file_v1_coauth_proto_msgTypes[4]
+	mi := &file_v1_coauth_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -321,7 +545,7 @@ func (x *TokenRequest) String() string {
 func (*TokenRequest) ProtoMessage() {}
 
 func (x *TokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_coauth_proto_msgTypes[4]
+	mi := &file_v1_coauth_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -334,7 +558,7 @@ func (x *TokenRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenRequest.ProtoReflect.Descriptor instead.
 func (*TokenRequest) Descriptor() ([]byte, []int) {
-	return file_v1_coauth_proto_rawDescGZIP(), []int{4}
+	return file_v1_coauth_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *TokenRequest) GetClientId() string {
@@ -398,7 +622,7 @@ type TokenReply struct {
 
 func (x *TokenReply) Reset() {
 	*x = TokenReply{}
-	mi := &file_v1_coauth_proto_msgTypes[5]
+	mi := &file_v1_coauth_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -410,7 +634,7 @@ func (x *TokenReply) String() string {
 func (*TokenReply) ProtoMessage() {}
 
 func (x *TokenReply) ProtoReflect() protoreflect.Message {
-	mi := &file_v1_coauth_proto_msgTypes[5]
+	mi := &file_v1_coauth_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -423,7 +647,7 @@ func (x *TokenReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TokenReply.ProtoReflect.Descriptor instead.
 func (*TokenReply) Descriptor() ([]byte, []int) {
-	return file_v1_coauth_proto_rawDescGZIP(), []int{5}
+	return file_v1_coauth_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *TokenReply) GetAccessToken() string {
@@ -458,7 +682,26 @@ var File_v1_coauth_proto protoreflect.FileDescriptor
 
 const file_v1_coauth_proto_rawDesc = "" +
 	"\n" +
-	"\x0fv1/coauth.proto\x12\rapi.coauth.v1\x1a\x1cgoogle/api/annotations.proto\"\xc8\x01\n" +
+	"\x0fv1/coauth.proto\x12\rapi.coauth.v1\x1a\x1cgoogle/api/annotations.proto\"\x88\x01\n" +
+	"\fLoginRequest\x12\x1a\n" +
+	"\busername\x18\x01 \x01(\tR\busername\x12\x1a\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\x12\x1e\n" +
+	"\n" +
+	"captchaKey\x18\x03 \x01(\tR\n" +
+	"captchaKey\x12 \n" +
+	"\vcaptchaCode\x18\x04 \x01(\tR\vcaptchaCode\"\x8e\x01\n" +
+	"\n" +
+	"LoginReply\x12 \n" +
+	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\"\n" +
+	"\frefreshToken\x18\x02 \x01(\tR\frefreshToken\x12\x1c\n" +
+	"\ttokenType\x18\x03 \x01(\tR\ttokenType\x12\x1c\n" +
+	"\texpiresIn\x18\x04 \x01(\x03R\texpiresIn\"\x10\n" +
+	"\x0eCaptchaRequest\"R\n" +
+	"\fCaptchaReply\x12\x1e\n" +
+	"\n" +
+	"captchaKey\x18\x01 \x01(\tR\n" +
+	"captchaKey\x12\"\n" +
+	"\fcaptchaValue\x18\x02 \x01(\tR\fcaptchaValue\"\xc8\x01\n" +
 	"\rAddAppRequest\x12\x1f\n" +
 	"\vclient_name\x18\x01 \x01(\tR\n" +
 	"clientName\x12\x1b\n" +
@@ -496,11 +739,13 @@ const file_v1_coauth_proto_rawDesc = "" +
 	"token_type\x18\x02 \x01(\tR\ttokenType\x12\x1d\n" +
 	"\n" +
 	"expires_in\x18\x03 \x01(\x03R\texpiresIn\x12#\n" +
-	"\rrefresh_token\x18\x04 \x01(\tR\frefreshToken2\xab\x02\n" +
+	"\rrefresh_token\x18\x04 \x01(\tR\frefreshToken2\xe8\x03\n" +
 	"\x06coauth\x12g\n" +
 	"\tAuthorize\x12\x1f.api.coauth.v1.AuthorizeRequest\x1a\x1d.api.coauth.v1.AuthorizeReply\"\x1a\x82\xd3\xe4\x93\x02\x14\x12\x12/v1/auth/authorize\x12Z\n" +
 	"\x05Token\x12\x1b.api.coauth.v1.TokenRequest\x1a\x19.api.coauth.v1.TokenReply\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/auth/token\x12\\\n" +
-	"\x06AddApp\x12\x1c.api.coauth.v1.AddAppRequest\x1a\x1a.api.coauth.v1.AddAppReply\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/auth/appsB#\n" +
+	"\x06AddApp\x12\x1c.api.coauth.v1.AddAppRequest\x1a\x1a.api.coauth.v1.AddAppReply\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/auth/apps\x12_\n" +
+	"\aCaptcha\x12\x1d.api.coauth.v1.CaptchaRequest\x1a\x1b.api.coauth.v1.CaptchaReply\"\x18\x82\xd3\xe4\x93\x02\x12\x12\x10/v1/auth/captcha\x12Z\n" +
+	"\x05Login\x12\x1b.api.coauth.v1.LoginRequest\x1a\x19.api.coauth.v1.LoginReply\"\x19\x82\xd3\xe4\x93\x02\x13:\x01*\"\x0e/v1/auth/loginB#\n" +
 	"\rapi.coauth.v1P\x01Z\x10coauth/api/v1;v1b\x06proto3"
 
 var (
@@ -515,24 +760,32 @@ func file_v1_coauth_proto_rawDescGZIP() []byte {
 	return file_v1_coauth_proto_rawDescData
 }
 
-var file_v1_coauth_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_v1_coauth_proto_msgTypes = make([]protoimpl.MessageInfo, 10)
 var file_v1_coauth_proto_goTypes = []any{
-	(*AddAppRequest)(nil),    // 0: api.coauth.v1.AddAppRequest
-	(*AddAppReply)(nil),      // 1: api.coauth.v1.AddAppReply
-	(*AuthorizeRequest)(nil), // 2: api.coauth.v1.AuthorizeRequest
-	(*AuthorizeReply)(nil),   // 3: api.coauth.v1.AuthorizeReply
-	(*TokenRequest)(nil),     // 4: api.coauth.v1.TokenRequest
-	(*TokenReply)(nil),       // 5: api.coauth.v1.TokenReply
+	(*LoginRequest)(nil),     // 0: api.coauth.v1.LoginRequest
+	(*LoginReply)(nil),       // 1: api.coauth.v1.LoginReply
+	(*CaptchaRequest)(nil),   // 2: api.coauth.v1.CaptchaRequest
+	(*CaptchaReply)(nil),     // 3: api.coauth.v1.CaptchaReply
+	(*AddAppRequest)(nil),    // 4: api.coauth.v1.AddAppRequest
+	(*AddAppReply)(nil),      // 5: api.coauth.v1.AddAppReply
+	(*AuthorizeRequest)(nil), // 6: api.coauth.v1.AuthorizeRequest
+	(*AuthorizeReply)(nil),   // 7: api.coauth.v1.AuthorizeReply
+	(*TokenRequest)(nil),     // 8: api.coauth.v1.TokenRequest
+	(*TokenReply)(nil),       // 9: api.coauth.v1.TokenReply
 }
 var file_v1_coauth_proto_depIdxs = []int32{
-	2, // 0: api.coauth.v1.coauth.Authorize:input_type -> api.coauth.v1.AuthorizeRequest
-	4, // 1: api.coauth.v1.coauth.Token:input_type -> api.coauth.v1.TokenRequest
-	0, // 2: api.coauth.v1.coauth.AddApp:input_type -> api.coauth.v1.AddAppRequest
-	3, // 3: api.coauth.v1.coauth.Authorize:output_type -> api.coauth.v1.AuthorizeReply
-	5, // 4: api.coauth.v1.coauth.Token:output_type -> api.coauth.v1.TokenReply
-	1, // 5: api.coauth.v1.coauth.AddApp:output_type -> api.coauth.v1.AddAppReply
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	6, // 0: api.coauth.v1.coauth.Authorize:input_type -> api.coauth.v1.AuthorizeRequest
+	8, // 1: api.coauth.v1.coauth.Token:input_type -> api.coauth.v1.TokenRequest
+	4, // 2: api.coauth.v1.coauth.AddApp:input_type -> api.coauth.v1.AddAppRequest
+	2, // 3: api.coauth.v1.coauth.Captcha:input_type -> api.coauth.v1.CaptchaRequest
+	0, // 4: api.coauth.v1.coauth.Login:input_type -> api.coauth.v1.LoginRequest
+	7, // 5: api.coauth.v1.coauth.Authorize:output_type -> api.coauth.v1.AuthorizeReply
+	9, // 6: api.coauth.v1.coauth.Token:output_type -> api.coauth.v1.TokenReply
+	5, // 7: api.coauth.v1.coauth.AddApp:output_type -> api.coauth.v1.AddAppReply
+	3, // 8: api.coauth.v1.coauth.Captcha:output_type -> api.coauth.v1.CaptchaReply
+	1, // 9: api.coauth.v1.coauth.Login:output_type -> api.coauth.v1.LoginReply
+	5, // [5:10] is the sub-list for method output_type
+	0, // [0:5] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -549,7 +802,7 @@ func file_v1_coauth_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_v1_coauth_proto_rawDesc), len(file_v1_coauth_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   10,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

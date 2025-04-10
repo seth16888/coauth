@@ -5,6 +5,11 @@ server:
 log:
   level: debug
   filename: app.log
+Jwt:
+  SignKey: erw1234#DFaopud567890add
+  Issuer: coauth
+  ExpireTime: 120
+  MaxRefreshTime: 86400
 db:
   driver: mysql
   source: root:123456@tcp(127.0.0.1:13306)/coauth?charset=utf8mb4&parseTime=True&loc=Local

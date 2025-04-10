@@ -4,6 +4,7 @@ import (
 	pb "coauth/api/v1"
 	"coauth/internal/biz"
 	"coauth/internal/model"
+	"coauth/pkg/validator"
 	"context"
 
 	"go.uber.org/zap"
@@ -11,14 +12,26 @@ import (
 
 type CoauthService struct {
 	pb.UnimplementedCoauthServer
-	uc  *biz.AuthorizeUseCase
-	log *zap.Logger
+	uc        *biz.AuthorizeUseCase
+	log       *zap.Logger
+	captcha   *biz.CaptchaUsecase
+	login     *biz.LoginUsecase
+	validator *validator.Validator
 }
 
-func NewCoauthService(uc *biz.AuthorizeUseCase, log *zap.Logger) *CoauthService {
+func NewCoauthService(
+	uc *biz.AuthorizeUseCase,
+	log *zap.Logger,
+	captcha *biz.CaptchaUsecase,
+	login *biz.LoginUsecase,
+	validator *validator.Validator,
+) *CoauthService {
 	return &CoauthService{
-		uc:  uc,
-		log: log,
+		uc:        uc,
+		log:       log,
+		captcha:   captcha,
+		login:     login,
+		validator: validator,
 	}
 }
 
@@ -68,7 +81,7 @@ func (s *CoauthService) Token(ctx context.Context, req *pb.TokenRequest) (*pb.To
 	}, nil
 }
 
-func (s *CoauthService) AddClient(ctx context.Context, req *pb.AddAppRequest) (*pb.AddAppReply, error) {
+func (s *CoauthService) AddApp(ctx context.Context, req *pb.AddAppRequest) (*pb.AddAppReply, error) {
 	s.log.Debug("AddClient", zap.Any("req", req))
 	params := &model.AddClientRequest{
 		ClientName:    req.ClientName,
@@ -79,7 +92,7 @@ func (s *CoauthService) AddClient(ctx context.Context, req *pb.AddAppRequest) (*
 		UserID:        req.UserId,
 	}
 
-	app, err := s.uc.AddClient(ctx, params)
+	app, err := s.uc.AddApp(ctx, params)
 	if err != nil {
 		return nil, err
 	}

@@ -352,7 +352,7 @@ func TestAuthorizeUseCase_AddClient(t *testing.T) {
 			}
 
 			// 调用 AddClient 方法
-			reply, err := uc.AddClient(context.Background(), req)
+			reply, err := uc.AddApp(context.Background(), req)
 
 			// 验证结果
 			So(err, ShouldBeNil)
@@ -366,7 +366,7 @@ func TestAuthorizeUseCase_AddClient(t *testing.T) {
 			}
 
 			// 调用 AddClient 方法
-			reply, err := uc.AddClient(context.Background(), req)
+			reply, err := uc.AddApp(context.Background(), req)
 
 			// 验证结果
 			So(reply, ShouldBeNil)

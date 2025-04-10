@@ -134,7 +134,7 @@ func (uc *AuthorizeUseCase) Token(ctx context.Context, req *model.TokenRequest) 
 	}, nil
 }
 
-func (uc *AuthorizeUseCase) AddClient(ctx context.Context, req *model.AddClientRequest) (*model.AddClientReply, error) {
+func (uc *AuthorizeUseCase) AddApp(ctx context.Context, req *model.AddClientRequest) (*model.AddClientReply, error) {
 	// 生成客户端ID和密钥
 	clientID := uuid.New().String()
 	clientSecret := uuid.New().String()

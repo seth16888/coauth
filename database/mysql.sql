@@ -20,16 +20,30 @@ CREATE TABLE app (
     UNIQUE KEY (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+INSERT INTO `coauth`.`user`
+(`id`,
+`username`,
+`password`,
+`salt`,
+`gender`,
+`nickname`,
+`avatar`,
+`email`,
+`phone`)
+VALUES
+(uuid(),'admin1','c886db7436266ee8afb0a8c40f8d65a4aebec45ad47c5f4cb05fca46c1f6ecef','saltsalt',1,'admin1',null,null,null);
+
 CREATE TABLE user (
     id VARCHAR(36) NOT NULL,          -- 用户ID
     username VARCHAR(32) NOT NULL,      -- 用户名
     `password` VARCHAR(64) NOT NULL,      -- 密码
     salt VARCHAR(16) NOT NULL,          -- 盐值
+    gender TINYINT(1) DEFAULT 0 NOT NULL COMMENT '性别：0-保密，1-男，2-女',
     nickname VARCHAR(32),      -- 昵称
     avatar VARCHAR(256),                 -- 头像
     email VARCHAR(128),                  -- 邮箱
     phone VARCHAR(20),                   -- 手机号
-    `status` TINYINT(1) DEFAULT 1 NOT NULL,         -- 状态：1-正常，0-禁用
+    `status` TINYINT(1) DEFAULT 1 NOT NULL COMMENT '状态：1-正常，0-禁用',
     last_login_at bigint NULL,        -- 最后登录时间
     last_login_ip VARCHAR(16),           -- 最后登录IP
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 创建时间

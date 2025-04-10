@@ -22,6 +22,8 @@ const (
 	Coauth_Authorize_FullMethodName = "/api.coauth.v1.coauth/Authorize"
 	Coauth_Token_FullMethodName     = "/api.coauth.v1.coauth/Token"
 	Coauth_AddApp_FullMethodName    = "/api.coauth.v1.coauth/AddApp"
+	Coauth_Captcha_FullMethodName   = "/api.coauth.v1.coauth/Captcha"
+	Coauth_Login_FullMethodName     = "/api.coauth.v1.coauth/Login"
 )
 
 // CoauthClient is the client API for Coauth service.
@@ -31,6 +33,8 @@ type CoauthClient interface {
 	Authorize(ctx context.Context, in *AuthorizeRequest, opts ...grpc.CallOption) (*AuthorizeReply, error)
 	Token(ctx context.Context, in *TokenRequest, opts ...grpc.CallOption) (*TokenReply, error)
 	AddApp(ctx context.Context, in *AddAppRequest, opts ...grpc.CallOption) (*AddAppReply, error)
+	Captcha(ctx context.Context, in *CaptchaRequest, opts ...grpc.CallOption) (*CaptchaReply, error)
+	Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginReply, error)
 }
 
 type coauthClient struct {
@@ -71,6 +75,26 @@ func (c *coauthClient) AddApp(ctx context.Context, in *AddAppRequest, opts ...gr
 	return out, nil
 }
 
+func (c *coauthClient) Captcha(ctx context.Context, in *CaptchaRequest, opts ...grpc.CallOption) (*CaptchaReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(CaptchaReply)
+	err := c.cc.Invoke(ctx, Coauth_Captcha_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *coauthClient) Login(ctx context.Context, in *LoginRequest, opts ...grpc.CallOption) (*LoginReply, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(LoginReply)
+	err := c.cc.Invoke(ctx, Coauth_Login_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CoauthServer is the server API for Coauth service.
 // All implementations must embed UnimplementedCoauthServer
 // for forward compatibility.
@@ -78,6 +102,8 @@ type CoauthServer interface {
 	Authorize(context.Context, *AuthorizeRequest) (*AuthorizeReply, error)
 	Token(context.Context, *TokenRequest) (*TokenReply, error)
 	AddApp(context.Context, *AddAppRequest) (*AddAppReply, error)
+	Captcha(context.Context, *CaptchaRequest) (*CaptchaReply, error)
+	Login(context.Context, *LoginRequest) (*LoginReply, error)
 	mustEmbedUnimplementedCoauthServer()
 }
 
@@ -96,6 +122,12 @@ func (UnimplementedCoauthServer) Token(context.Context, *TokenRequest) (*TokenRe
 }
 func (UnimplementedCoauthServer) AddApp(context.Context, *AddAppRequest) (*AddAppReply, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddApp not implemented")
+}
+func (UnimplementedCoauthServer) Captcha(context.Context, *CaptchaRequest) (*CaptchaReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Captcha not implemented")
+}
+func (UnimplementedCoauthServer) Login(context.Context, *LoginRequest) (*LoginReply, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Login not implemented")
 }
 func (UnimplementedCoauthServer) mustEmbedUnimplementedCoauthServer() {}
 func (UnimplementedCoauthServer) testEmbeddedByValue()                {}
@@ -172,6 +204,42 @@ func _Coauth_AddApp_Handler(srv interface{}, ctx context.Context, dec func(inter
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Coauth_Captcha_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CaptchaRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoauthServer).Captcha(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Coauth_Captcha_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoauthServer).Captcha(ctx, req.(*CaptchaRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Coauth_Login_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(LoginRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CoauthServer).Login(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Coauth_Login_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CoauthServer).Login(ctx, req.(*LoginRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Coauth_ServiceDesc is the grpc.ServiceDesc for Coauth service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -190,6 +258,14 @@ var Coauth_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "AddApp",
 			Handler:    _Coauth_AddApp_Handler,
+		},
+		{
+			MethodName: "Captcha",
+			Handler:    _Coauth_Captcha_Handler,
+		},
+		{
+			MethodName: "Login",
+			Handler:    _Coauth_Login_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
