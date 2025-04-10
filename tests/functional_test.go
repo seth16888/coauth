@@ -15,6 +15,8 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/credentials/insecure"
+	healthsvc "google.golang.org/grpc/health"
+	healthpb "google.golang.org/grpc/health/grpc_health_v1"
 	"google.golang.org/grpc/status"
 	"google.golang.org/grpc/test/bufconn"
 )
@@ -43,6 +45,8 @@ func startTestGrpcServer(configFile string) (*grpc.Server, *bufconn.Listener) {
 func registerServices(s *grpc.Server, svc v1.CoauthServer) {
 	// 注册服务
 	v1.RegisterCoauthServer(s, svc)
+	healthpb.RegisterHealthServer(s, healthsvc.NewServer())
+
 }
 
 func createGrpcConnection(t *testing.T) *grpc.ClientConn {
@@ -184,5 +188,22 @@ func TestPasswordLogin(t *testing.T) {
 		So(resp.RefreshToken, ShouldNotBeEmpty)
 		So(resp.TokenType, ShouldEqual, "Bearer")
 		So(resp.ExpiresIn, ShouldBeGreaterThan, 0)
+	})
+}
+
+// HealthCheck 测试健康检查
+func TestHealthCheck(t *testing.T) {
+	conn := createGrpcConnection(t)
+	defer conn.Close()
+
+  Convey("When service alive", t, func() {
+		client := healthpb.NewHealthClient(conn)
+		req := healthpb.HealthCheckRequest{
+		}
+		resp, err := client.Check(context.Background(), &req)
+
+		So(err, ShouldBeNil)
+		So(resp, ShouldNotBeNil)
+		So(resp.Status, ShouldEqual, healthpb.HealthCheckResponse_SERVING)
 	})
 }
