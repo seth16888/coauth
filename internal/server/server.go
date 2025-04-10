@@ -1,7 +1,6 @@
 package server
 
 import (
-	pb "coauth/api/v1"
 	v1 "coauth/api/v1"
 	"coauth/internal/di"
 	"coauth/internal/middleware"
@@ -34,7 +33,7 @@ func Start(deps *di.Container) error {
 			middleware.RecoverInterceptor(deps.Log),
 		),
 	)
-	pb.RegisterCoauthServer(s, deps.Svc)
+	v1.RegisterCoauthServer(s, deps.Svc)
 	// 健康检查
 	healthSvc := healthsvc.NewServer()
 	healthpb.RegisterHealthServer(s, healthSvc)
