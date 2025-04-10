@@ -27,6 +27,7 @@ func Start(deps *di.Container) error {
 
 	s := grpc.NewServer(
 		grpc.ChainUnaryInterceptor(
+      middleware.TimeoutInterceptor(),
 			middleware.RequestID(),
 			middleware.LoggingInterceptor(deps.Log),
 			middleware.RecoverInterceptor(deps.Log),
