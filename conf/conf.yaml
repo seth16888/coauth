@@ -1,6 +1,6 @@
 server:
   grpc:
-    addr: 0.0.0.0:10101
+    addr: 0.0.0.0:8201
     timeout: 30
 log:
   level: debug
