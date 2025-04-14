@@ -1,9 +1,10 @@
 package service
 
 import (
-	pb "coauth/api/v1"
-	"coauth/internal/model"
 	"context"
+
+	pb "github.com/seth16888/coauth/api/v1"
+	"github.com/seth16888/coauth/internal/model"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"

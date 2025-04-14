@@ -1,6 +1,6 @@
 package main
 
-import "coauth/internal/cmd"
+import "github.com/seth16888/coauth/internal/cmd"
 
 func main() {
 	cmd.Execute()

@@ -1,4 +1,4 @@
-module coauth
+module github.com/seth16888/coauth
 
 go 1.23.2
 

@@ -1,8 +1,8 @@
 package biz
 
 import (
-	"coauth/internal/entities"
-	"coauth/internal/model"
+	"github.com/seth16888/coauth/internal/entities"
+	"github.com/seth16888/coauth/internal/model"
 	"context"
 	"fmt"
 	"strings"

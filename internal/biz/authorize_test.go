@@ -1,11 +1,12 @@
 package biz
 
 import (
-	"coauth/internal/entities"
-	"coauth/internal/model"
 	"context"
 	"testing"
 	"time"
+
+	"github.com/seth16888/coauth/internal/entities"
+	"github.com/seth16888/coauth/internal/model"
 
 	"github.com/google/uuid"
 	. "github.com/smartystreets/goconvey/convey"

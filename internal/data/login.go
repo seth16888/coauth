@@ -1,9 +1,10 @@
 package data
 
 import (
-	"coauth/internal/biz"
-	"coauth/internal/entities"
 	"context"
+
+	"github.com/seth16888/coauth/internal/biz"
+	"github.com/seth16888/coauth/internal/entities"
 
 	"go.uber.org/zap"
 	"gorm.io/gorm"

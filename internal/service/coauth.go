@@ -1,11 +1,12 @@
 package service
 
 import (
-	pb "coauth/api/v1"
-	"coauth/internal/biz"
-	"coauth/internal/model"
-	"coauth/pkg/validator"
 	"context"
+
+	pb "github.com/seth16888/coauth/api/v1"
+	"github.com/seth16888/coauth/internal/biz"
+	"github.com/seth16888/coauth/internal/model"
+	"github.com/seth16888/coauth/pkg/validator"
 
 	"go.uber.org/zap"
 )

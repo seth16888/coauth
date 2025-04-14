@@ -1,10 +1,11 @@
 package tests
 
 import (
-	v1 "coauth/api/v1"
 	"context"
 	"strings"
 	"testing"
+
+	v1 "github.com/seth16888/coauth/api/v1"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

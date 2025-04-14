@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"coauth/internal/bootstrap"
+	"github.com/seth16888/coauth/internal/bootstrap"
 
 	"github.com/spf13/cobra"
 )

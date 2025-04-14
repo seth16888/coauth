@@ -1,9 +1,10 @@
 package config
 
 import (
-	"coauth/internal/database"
-	"coauth/pkg/logger"
 	"fmt"
+
+	"github.com/seth16888/coauth/internal/database"
+	"github.com/seth16888/coauth/pkg/logger"
 
 	"sync"
 

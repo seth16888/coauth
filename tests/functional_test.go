@@ -1,8 +1,6 @@
 package tests
 
 import (
-	v1 "coauth/api/v1"
-	"coauth/internal/di"
 	"context"
 	"log"
 	"net"
@@ -10,6 +8,9 @@ import (
 	"strings"
 	"testing"
 	"time"
+
+	v1 "github.com/seth16888/coauth/api/v1"
+	"github.com/seth16888/coauth/internal/di"
 
 	. "github.com/smartystreets/goconvey/convey"
 	"google.golang.org/grpc"

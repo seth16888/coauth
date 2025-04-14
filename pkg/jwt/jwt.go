@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"coauth/pkg/helpers"
+	"github.com/seth16888/coauth/pkg/helpers"
 
 	goJWT "github.com/golang-jwt/jwt/v5"
 	"go.uber.org/zap"

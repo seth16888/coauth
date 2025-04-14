@@ -1,8 +1,8 @@
 package bootstrap
 
 import (
-	"coauth/internal/di"
-	"coauth/internal/server"
+	"github.com/seth16888/coauth/internal/di"
+	"github.com/seth16888/coauth/internal/server"
 )
 
 func StartApp(configFile string) error {

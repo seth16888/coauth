@@ -1,16 +1,17 @@
 package di
 
 import (
-	"coauth/internal/biz"
-	"coauth/internal/config"
-	"coauth/internal/data"
-	"coauth/internal/database"
-	"coauth/internal/service"
-	"coauth/pkg/captcha"
-	"coauth/pkg/jwt"
-	"coauth/pkg/logger"
-	"coauth/pkg/validator"
 	"time"
+
+	"github.com/seth16888/coauth/internal/biz"
+	"github.com/seth16888/coauth/internal/config"
+	"github.com/seth16888/coauth/internal/data"
+	"github.com/seth16888/coauth/internal/database"
+	"github.com/seth16888/coauth/internal/service"
+	"github.com/seth16888/coauth/pkg/captcha"
+	"github.com/seth16888/coauth/pkg/jwt"
+	"github.com/seth16888/coauth/pkg/logger"
+	"github.com/seth16888/coauth/pkg/validator"
 
 	"go.uber.org/zap"
 	"gorm.io/gorm"

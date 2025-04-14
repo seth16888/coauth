@@ -1,11 +1,11 @@
 package biz
 
 import (
-	"coauth/internal/entities"
-	"coauth/internal/model"
-	"coauth/pkg/encrypt"
-	"coauth/pkg/helpers"
-	"coauth/pkg/jwt"
+	"github.com/seth16888/coauth/internal/entities"
+	"github.com/seth16888/coauth/internal/model"
+	"github.com/seth16888/coauth/pkg/encrypt"
+	"github.com/seth16888/coauth/pkg/helpers"
+	"github.com/seth16888/coauth/pkg/jwt"
 	"context"
 	"fmt"
 

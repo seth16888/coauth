@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	loggerx "coauth/pkg/logger"
+	loggerx "github.com/seth16888/coauth/pkg/logger"
 
 	"go.uber.org/zap"
 	"gorm.io/gorm/logger"

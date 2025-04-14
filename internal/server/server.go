@@ -1,10 +1,11 @@
 package server
 
 import (
-	v1 "coauth/api/v1"
-	"coauth/internal/di"
-	"coauth/internal/middleware"
 	"net"
+
+	v1 "github.com/seth16888/coauth/api/v1"
+	"github.com/seth16888/coauth/internal/di"
+	"github.com/seth16888/coauth/internal/middleware"
 
 	"go.uber.org/zap"
 	"google.golang.org/grpc"

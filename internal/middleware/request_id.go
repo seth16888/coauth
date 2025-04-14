@@ -1,8 +1,9 @@
 package middleware
 
 import (
-	"coauth/pkg/helpers"
 	"context"
+
+	"github.com/seth16888/coauth/pkg/helpers"
 
 	"google.golang.org/grpc"
 )

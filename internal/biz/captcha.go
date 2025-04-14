@@ -1,7 +1,7 @@
 package biz
 
 import (
-	"coauth/pkg/captcha"
+	"github.com/seth16888/coauth/pkg/captcha"
 	"image/color"
 
 	"github.com/mojocn/base64Captcha"
